@@ -4,7 +4,7 @@
 * 应用阶段
 * 几何阶段
 * 光栅化阶段
-<center><img src="image/render-pipeline.png"  width=400></img></center>
+<center><img src="image/Render-pipeline/render-pipeline.png"  width=400></img></center>
 
 ---
 ## 应用阶段(Application Stage)：
@@ -13,7 +13,7 @@
 * 调用Draw Call($CPU \rightarrow GPU$)
 ---
 ## GPU流水线：
-<center><img src="image/gpu-pipeline.png"  width=500></img></center>
+<center><img src="image/Render-pipeline/gpu-pipeline.png"  width=500></img></center>
 
 
 ### 几何阶段(Geometry Stage):
@@ -31,7 +31,7 @@
 ### 顶点着色器(Vertex Shader):
 * 输入的每个顶点都会调用一次顶点着色器，不可创建或销毁顶点，无法得到顶点间的关系（如是否属于同一个三角网络）。主要工作：进行坐标变换和逐顶点光照，还可以计算和输出顶点的颜色。
 * 坐标变换:把顶点坐标从模型空间转换到其次裁剪空间，可以在这一步中改变顶点的位置，最终得到归一化的设备坐标(Normalized Device Coordinates,NDC)
-<center><img src="image/vertex-transform.png"  width=350></img></center>
+<center><img src="image/Render-pipeline/vertex-transform.png"  width=350></img></center>
 
 ### 裁剪(Clipping):
 * 图元和摄像机视野关系：完全在视野内、部分在视野内、完全在视野外
@@ -44,32 +44,32 @@
 ### 三角形遍历(Triangle Traversal):
 * 检查每个像素是否被一个三角网络所覆盖，如果被覆盖的话生成一个片元，使用三个顶点的顶点信息对整个覆盖区域的元素进行插值
 * 输出一个片元序列
-<center><img src="image/triangle-traversal.png"  width=400></img></center>
+<center><img src="image/Render-pipeline/triangle-traversal.png"  width=400></img></center>
 
 ### 片元着色器(Fragment Shader):
 * 对单个片元进行操作，输出一个或多个颜色值，可完成许多重要的渲染技术如纹理采样
 * **纹理采样**:在顶点着色器阶段输出每个顶点对应的纹理坐标，经过光栅化阶段对三角网络的三个顶点对应的纹理坐标进行插值，得到其覆盖的片元的纹理坐标
-<center><img src="image/fragment-shader.png"  width=400></img></center>
+<center><img src="image/Render-pipeline/fragment-shader.png"  width=400></img></center>
 
 ### 逐片元操作(Per-Fragment Operations):
 #### 主要任务：
 * 决定每个片元的可见性，进行测试工作如深度测试、模板测试
 * 对通过测试的片元，把片元的颜色值和已经存储在颜色缓冲区中的颜色进行合并
-<center><img src="image/per-fragment.png"  width=400></img></center>
+<center><img src="image/Render-pipeline/per-fragment.png"  width=400></img></center>
 
 #### 测试：
-<center><img src="image/fragment-test.png"  width=400></img></center>
+<center><img src="image/Render-pipeline/fragment-test.png"  width=400></img></center>
 
 #### 合并
 * 对不透明物体，可以关闭混合(Blend)操作，片元着色器计算得到的颜色值会覆盖颜色缓冲区中的像素值
 * 对半透明物体，需开启混合操作，对源颜色和目标颜色使用混合函数进行混合，可以选择混合模式
-<center><img src="image/blend.png"  width=350></img></center>
+<center><img src="image/Render-pipeline/blend.png"  width=350></img></center>
 
 * 将图元显示到屏幕上，使用双重缓冲(Double Buffering)
 ---
 # 其他问题
 ## OpenGL/DirectX
-<center><img src="image/relation.png" width=300></img></center>
+<center><img src="image/Render-pipeline/relation.png" width=300></img></center>
 
 ## HLSL、GLSL、CG
 * **GLSL(OpenGL Shading Language)**:
@@ -81,7 +81,7 @@
 ## DrawCall
 * CPU调用图像编程接口
 * CPU和GPU的并行工作使用一个命令缓冲区，调用DrawCall之前，CPU需要向GPU发送很多内容，需完成很多工作，GPU渲染速度往往快于CPU提交命令的速度，因此应尽量减少DrawCall
-<center><img src="image/drawcall.png" width=300></img></center>
+<center><img src="image/Render-pipeline/drawcall.png" width=300></img></center>
 
 ---
 # Shader
