@@ -12,4 +12,6 @@
 * **SpecularVertexLevel:** 逐顶点高光反射光照
 * **SpecularPixelLevel:** 逐像素高光反射光照
 * **BlinnPhong:** Blinn-Phong高光反射光照
+* **CookTorranceBRDF:** CookTorranceBRDF光照模型
+* **BankBRDF:** BankBRDF光照模型
 ---
