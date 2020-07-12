@@ -3,7 +3,7 @@
 ## 简单水体
 * 贴图+UV动画
 * 使用一张噪声纹理，采样结果作为UV的偏移值，从而模拟水流动的效果
-<center><img src="https://gitee.com/ian824/blogPic/raw/master/img/unity-shader-water/SimpleWater.gif"  width=400></img></center>
+<center><img src="https://ian824.gitee.io/blogpic/img/unity-shader-water/SimpleWater.gif"  width=400></img></center>
 
 * ```
     // sample the texture
@@ -15,7 +15,7 @@
   * `_Intensity`为水流动的强度
   * `_XSpeed`为水流动的速度
 
-* 完整代码：
+* 完整代码：https://github.com/kb824999404/Unity_Shader/blob/master/Shader/Test/Water/SimpleWater.shader
 ---
 ## 水波
 * 波纹内部有拉伸效果，随时间变化：用距离中心的长度和时间作为输入，通过三角函数计算拉伸值，`_distanceFactor`为波峰波谷数量，`_totalFactor`为最大拉伸强度，`_timeFactor`为拉伸强度变化速度
@@ -49,9 +49,9 @@ float2 dv1 = normalize(dv);
 float2 offset = dv1  * sinFactor*discardFactor*flag_ripple;
 ```
 * 水波可能不太明显，可以加上水波的颜色（效果好像不太好）
-<center><img src="https://gitee.com/ian824/blogPic/raw/master/img/unity-shader-water/RippleWater.gif"  width=400></img></center>
+<center><img src="https://ian824.gitee.io/blogpic/img/unity-shader-water/RippleWater.gif"  width=400></img></center>
 
-* 完整代码：
+* 完整代码：https://github.com/kb824999404/Unity_Shader/blob/master/Shader/Test/Water/RippleWater.shader
 ---
 ## 波浪
 * 顶点动画，这里采用线性波形叠加方法，`_WaveScale`为波浪数量，`_WaveStrength`为波浪强度
@@ -74,9 +74,9 @@ float2 offset = dv1  * sinFactor*discardFactor*flag_ripple;
         return o;
     }
     ```
-<center><img src="https://gitee.com/ian824/blogPic/raw/master/img/unity-shader-water/WaveWater.gif"  width=400></img></center>
+<center><img src="https://ian824.gitee.io/blogpic/img/unity-shader-water/WaveWater.gif"  width=400></img></center>
 
-* 完整代码：
+* 完整代码：https://github.com/kb824999404/Unity_Shader/blob/master/Shader/Test/Water/WaveWater.shader
 ---
 ## 折射反射
 * 折射：使用`GrabPass{}`在渲染水面前获取屏幕图像，作为水下贴图，在此基础上渲染水面
@@ -100,11 +100,16 @@ float2 offset = dv1  * sinFactor*discardFactor*flag_ripple;
     ```
     fixed3 color = ambient+(waterColor +specular+fresnelColor ) * atten;
     ```
-<center><img src="https://gitee.com/ian824/blogPic/raw/master/img/unity-shader-water/AllWater.gif"  width=400></img></center>
+<center><img src="https://ian824.gitee.io/blogpic/img/unity-shader-water/AllWater.gif"  width=400></img></center>
 
-* 完整代码：
+* 完整代码：https://github.com/kb824999404/Unity_Shader/blob/master/Shader/Test/Water/AllWater.shader
+
 ---
 
+**本文代码：** https://github.com/kb824999404/Unity_Shader/blob/master/Shader/Test/Water
+
+---
+**参考：** 
 
 https://blog.csdn.net/v_xchen_v/article/details/79676335
 https://blog.csdn.net/v_xchen_v/article/details/79782900
